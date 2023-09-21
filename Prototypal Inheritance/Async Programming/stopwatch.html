@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #nit{
+            text-align: center;
+            color: blue;
+        }
+        body {
+           
+            font-family: sans-serif;
+          
+        }
+
+        #parent {
+            width: 30%;
+           
+            margin: auto;
+            text-align: center;
+            padding: 50px;
+            background-color: rgb(212, 10, 162);
+            
+            border-radius: 30px;
+            margin-top: 200px;
+            /*box-shadow: rgba(110, 28, 158, 0.2) 0px 7px 29px 0px;*/
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+        }
+
+        #btn {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+
+        button {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
+            border-radius: 15px;
+            font-size: 25px;
+            border: none;
+            background-color: rgb(49, 6, 202);
+            /* background-color: white; */
+            color: white;
+            /* color: black; */
+           /* box-shadow: rgba(20, 170, 70, 0.2) 0px 7px 29px 0px;*/
+           box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            cursor: pointer;
+        }
+
+        span {
+            font-size: 80px;
+        }
+
+        button:hover {
+            background: #03e9f4;
+            color: #050801;
+            box-shadow: 25 25 5px #03e9f4,
+                25 25 25px #03e9f4,
+                25 25 50px #03e9f4,
+                25 25 200px #03e9f4;
+            -webkit-box-reflect: below 1px linear-gradient( #0005);
+        } 
+    </style>
+</head>
+
+<body>
+    <h1 id="nit">Nitesh's Stopwatch</h1>
+
+    <div id="parent">
+        <div id="display">
+            <h1>
+                <span id="min">00 </span>:
+                <span id="sec">00</span> :
+                <span id="count">00</span>
+            </h1>
+        </div>
+
+        <div id="btn">
+            <button onclick="start()">Start</button>
+            <button onclick="pause()">Pause</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    let min = 0;
+    let sec = 0;
+    let count = 0;
+
+    let timer = false;
+
+    function start() {
+        timer = true;
+        stopwatch();
+
+    }
+
+    function pause() {
+        timer = false;
+
+    }
+
+    function reset() {
+        timer = false;
+        min = 0;
+        sec = 0;
+        count = 0;
+
+        document.getElementById("count").innerText = "00"
+        document.getElementById("sec").innerText = "00"
+        document.getElementById("min").innerText = "00"
+
+    }
+
+    function stopwatch() {
+        if (timer == true) {
+
+            count++;
+
+            if (count == 100) {
+                sec = sec + 1;
+                count = 0;
+            }
+
+            if (sec == 60) {
+                min = min + 1;
+                sec = 0
+            }
+
+            setTimeout("stopwatch()", 10)
+
+            let countstr = count;
+            let secstr = sec;
+            let minstr = min;
+
+            if (count < 10) {
+                countstr = "0" + count;
+            }
+
+            if (sec < 10) {
+                secstr = "0" + sec;
+            }
+
+            if (min < 10) {
+                minstr = "0" + min;
+            }
+
+            document.getElementById("count").innerText = countstr;
+            document.getElementById("sec").innerText = secstr;
+            document.getElementById("min").innerText = minstr;
+
+        }
+    }
+</script>
